@@ -31,7 +31,7 @@ Une interface fluide permettant de naviguer instantanément entre les **Entrées
 
 ---
 
-## 🛠️ Stack Technique
+## Stack Technique
 
 * **Langages :** HTML5, CSS3 (Variables, Flexbox, Grid), JavaScript (ES6+).
 * **Typographie :** *Playfair Display* & *Poppins* via Google Fonts.
@@ -43,7 +43,7 @@ Une interface fluide permettant de naviguer instantanément entre les **Entrées
 
 ## Aperçu du Message Cuisine (WhatsApp)
 
-> **NOUVELLE COMMANDE PAYÉE** 🔔
+> **NOUVELLE COMMANDE PAYÉE**
 > **Commande :** #ORD-FEDA-9988
 > **Client :** [Nom à préciser]
 > **DÉTAILS :** 1x Carpe Grillée Spéciale (6.000 FCFA)
@@ -53,7 +53,7 @@ Une interface fluide permettant de naviguer instantanément entre les **Entrées
 
 ---
 
-## 🛡️ Sécurité
+## Sécurité
 
 Toutes les transactions sont traitées via les serveurs sécurisés de FedaPay, garantissant la protection des données financières des clients.
 

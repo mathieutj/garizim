@@ -58,8 +58,13 @@
                     <div class="food-price-row">
                         <span class="price">4.500 FCFA</span>
                         <div class="card-action">
-                            <button class="btn-pay-direct" onclick="payDirect('Poulet Braisé', 4500)">
-                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            <div class="quantity-selector">
+                                <button type="button" class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                                <input type="number" class="qty-input" value="1" min="1" readonly>
+                                <button type="button" class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="btn-pay-direct" onclick="payWithQty(this, 'Poulet Braisé', 4500)">
+                                <i class="fas fa-wallet"></i> Payer
                             </button>
                         </div>
                     </div>
@@ -77,8 +82,13 @@
                     <div class="food-price-row">
                         <span class="price">6.000 FCFA</span>
                         <div class="card-action">
-                            <button class="btn-pay-direct" onclick="payDirect('Carpe Grillée', 6000)">
-                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            <div class="quantity-selector">
+                                <button type="button" class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                                <input type="number" class="qty-input" value="1" min="1" readonly>
+                                <button type="button" class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="btn-pay-direct" onclick="payWithQty(this, 'Carpe Grillée', 6000)">
+                                <i class="fas fa-wallet"></i> Payer
                             </button>
                         </div>
                     </div>
@@ -96,8 +106,13 @@
                     <div class="food-price-row">
                         <span class="price">2.500 FCFA</span>
                         <div class="card-action">
-                            <button class="btn-pay-direct" onclick="payDirect('Pastels Viande', 2500)">
-                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            <div class="quantity-selector">
+                                <button type="button" class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                                <input type="number" class="qty-input" value="1" min="1" readonly>
+                                <button type="button" class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="btn-pay-direct" onclick="payWithQty(this, 'Pastels à la Viande', 2500)">
+                                <i class="fas fa-wallet"></i> Payer
                             </button>
                         </div>
                     </div>
@@ -115,8 +130,13 @@
                     <div class="food-price-row">
                         <span class="price">1.000 FCFA</span>
                         <div class="card-action">
-                            <button class="btn-pay-direct" onclick="payDirect('Bissap Royal', 1000)">
-                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            <div class="quantity-selector">
+                                <button type="button" class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                                <input type="number" class="qty-input" value="1" min="1" readonly>
+                                <button type="button" class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="btn-pay-direct" onclick="payWithQty(this, 'Bissap Royal Glacé', 1000)">
+                                <i class="fas fa-wallet"></i> Payer
                             </button>
                         </div>
                     </div>
@@ -130,18 +150,18 @@
     <div id="overlay" onclick="toggleCart()"></div>
 
     <div id="delivery-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h3>Détails de livraison</h3>
-        <p id="selected-item-name" style="color: var(--primary-orange); font-weight: bold;"></p>
-        <form id="delivery-form">
-            <input type="text" id="client-name" placeholder="Nom et Prénom" required>
-            <input type="tel" id="client-phone" placeholder="Numéro WhatsApp (ex: 97000000)" required>
-            <textarea id="client-address" placeholder="Adresse précise (Quartier, Rue, Maison...)" required></textarea>
-            <button type="submit" class="btn-primary" style="width: 100%;">Procéder au paiement</button>
-        </form>
-      </div>
-      </div>
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3>Détails de livraison</h3>
+            <p id="selected-item-name" style="color: var(--primary-orange); font-weight: bold;"></p>
+            <form id="delivery-form">
+                <input type="text" id="client-name" placeholder="Nom et Prénom" required>
+                <input type="tel" id="client-phone" placeholder="Numéro WhatsApp (ex: 97000000)" required>
+                <textarea id="client-address" placeholder="Adresse précise (Quartier, Rue, Maison...)" required></textarea>
+                <button type="submit" class="btn-primary" style="width: 100%;">Procéder au paiement</button>
+            </form>
+        </div>
+    </div>
 
     <footer class="main-footer">
         <div class="footer-container">
@@ -165,5 +185,4 @@
     <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
     <script src="app.js"></script>
 </body>
-
 </html>

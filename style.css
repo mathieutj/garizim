@@ -347,4 +347,19 @@ h1, h2, h3 {
     .btn-contact {
         padding: 8px 12px;
     }
+
+}
+.modal {
+    display: none; 
+    position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+.modal-content {
+    background-color: white; margin: 10% auto; padding: 25px;
+    border-radius: 15px; width: 90%; max-width: 400px; position: relative;
+}
+.close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
+#delivery-form input, #delivery-form textarea {
+    width: 100%; padding: 12px; margin: 10px 0;
+    border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Poppins';
 }

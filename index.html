@@ -129,6 +129,20 @@
 
     <div id="overlay" onclick="toggleCart()"></div>
 
+    <div id="delivery-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h3>Détails de livraison</h3>
+        <p id="selected-item-name" style="color: var(--primary-orange); font-weight: bold;"></p>
+        <form id="delivery-form">
+            <input type="text" id="client-name" placeholder="Nom et Prénom" required>
+            <input type="tel" id="client-phone" placeholder="Numéro WhatsApp (ex: 97000000)" required>
+            <textarea id="client-address" placeholder="Adresse précise (Quartier, Rue, Maison...)" required></textarea>
+            <button type="submit" class="btn-primary" style="width: 100%;">Procéder au paiement</button>
+        </form>
+      </div>
+      </div>
+
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
@@ -151,4 +165,5 @@
     <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
     <script src="app.js"></script>
 </body>
+
 </html>

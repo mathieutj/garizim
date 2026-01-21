@@ -10,55 +10,55 @@ const CONFIG = {
  * @param {string} itemName - Nom du plat
  * @param {number} itemPrice - Prix du plat
  */
-let currentOrder = {}; // Stockage temporaire
+ let currentOrder = {}; // Stockage temporaire
 
-function payDirect(name, price) {
-    currentOrder = { name, price };
-    document.getElementById('selected-item-name').innerText = name + " - " + price.toLocaleString() + " F";
-    document.getElementById('delivery-modal').style.display = 'block';
-}
-
-function closeModal() {
-    document.getElementById('delivery-modal').style.display = 'none';
-}
-
-// Gestion de la soumission du formulaire
-document.getElementById('delivery-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    closeModal();
-    
-    // On lance FedaPay avec les infos enregistrées
-    const name = document.getElementById('client-name').value;
-    const phone = document.getElementById('client-phone').value;
-    const address = document.getElementById('client-address').value;
-
-    startFedaPay(name, phone, address);
-});
-
-function startFedaPay(clientName, clientPhone, clientAddress) {
-    let widget = FedaCheckout.setup({
-        public_key: CONFIG.fedaPublicKey,
-        transaction: {
-            amount: currentOrder.price,
-            description: `Commande ${currentOrder.name} - ${clientName}`
-        },
-        onComplete: function(response) {
-            if (response.status === 'approved') {
-                sendFinalWhatsApp(clientName, clientPhone, clientAddress, response.transaction.id);
-            }
-        }
-    });
-    widget.open();
-}
-
-function sendFinalWhatsApp(name, phone, address, transId) {
+ function payDirect(name, price) {
+     currentOrder = { name, price };
+     document.getElementById('selected-item-name').innerText = name + " - " + price.toLocaleString() + " F";
+     document.getElementById('delivery-modal').style.display = 'block';
+ }
+ 
+ function closeModal() {
+     document.getElementById('delivery-modal').style.display = 'none';
+ }
+ 
+ // Gestion de la soumission du formulaire
+ document.getElementById('delivery-form').addEventListener('submit', function(e) {
+     e.preventDefault();
+     closeModal();
+     
+     // On lance FedaPay avec les infos enregistrées
+     const name = document.getElementById('client-name').value;
+     const phone = document.getElementById('client-phone').value;
+     const address = document.getElementById('client-address').value;
+ 
+     startFedaPay(name, phone, address);
+ });
+ 
+ function startFedaPay(clientName, clientPhone, clientAddress) {
+     let widget = FedaCheckout.setup({
+         public_key: CONFIG.fedaPublicKey,
+         transaction: {
+             amount: currentOrder.price,
+             description: `Commande ${currentOrder.name} - ${clientName}`
+         },
+         onComplete: function(response) {
+             if (response.status === 'approved') {
+                 sendFinalWhatsApp(clientName, clientPhone, clientAddress, response.transaction.id);
+             }
+         }
+     });
+     widget.open();
+ }
+ 
+ function sendFinalWhatsApp(name, phone, address, transId) {
     const message = 
         `🔔 *NOUVELLE COMMANDE PAYÉE* 🔔%0A` +
         `🆔 *Commande :* #ORD-${transId}%0A` +
         `👤 *Client :* ${name}%0A` +
         `📞 *Contact :* ${phone}%0A` +
-        `🏠 *Adresse :* ${address}%0A` +
-        `🛒 *DÉTAIL :* 1x ${currentOrder.name}%0A` +
+        `🏠 *Adresse :* ${address}%0A%0A` +
+        `🛒 *DÉTAIL :* ${currentOrder.quantity}x ${currentOrder.name}%0A` + // Indique la quantité ici
         `💰 *TOTAL :* ${currentOrder.price.toLocaleString()} FCFA%0A` +
         `💳 *Paiement :* Confirmé (FedaPay)`;
 
@@ -126,5 +126,33 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
 });
+
+// Fonction pour augmenter/diminuer la quantité
+function updateQty(btn, change) {
+    const input = btn.parentElement.querySelector('.qty-input');
+    let value = parseInt(input.value) + change;
+    if (value < 1) value = 1;
+    input.value = value;
+}
+
+// Nouvelle fonction de paiement qui prend en compte la quantité
+function payWithQty(btn, name, unitPrice) {
+    const card = btn.closest('.food-card');
+    const quantity = parseInt(card.querySelector('.qty-input').value);
+    const totalPrice = unitPrice * quantity;
+
+    // On stocke les infos pour le formulaire modal
+    currentOrder = { 
+        name: name, 
+        unitPrice: unitPrice,
+        quantity: quantity,
+        price: totalPrice 
+    };
+
+    // On affiche le modal avec le récapitulatif
+    document.getElementById('selected-item-name').innerText = 
+        `${quantity}x ${name} (${totalPrice.toLocaleString()} F)`;
+    
+    document.getElementById('delivery-modal').style.display = 'block';
+}

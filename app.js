@@ -10,23 +10,59 @@ const CONFIG = {
  * @param {string} itemName - Nom du plat
  * @param {number} itemPrice - Prix du plat
  */
-function payDirect(itemName, itemPrice) {
+let currentOrder = {}; // Stockage temporaire
+
+function payDirect(name, price) {
+    currentOrder = { name, price };
+    document.getElementById('selected-item-name').innerText = name + " - " + price.toLocaleString() + " F";
+    document.getElementById('delivery-modal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('delivery-modal').style.display = 'none';
+}
+
+// Gestion de la soumission du formulaire
+document.getElementById('delivery-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    closeModal();
+    
+    // On lance FedaPay avec les infos enregistrées
+    const name = document.getElementById('client-name').value;
+    const phone = document.getElementById('client-phone').value;
+    const address = document.getElementById('client-address').value;
+
+    startFedaPay(name, phone, address);
+});
+
+function startFedaPay(clientName, clientPhone, clientAddress) {
     let widget = FedaCheckout.setup({
         public_key: CONFIG.fedaPublicKey,
         transaction: {
-            amount: itemPrice,
-            description: `Commande : ${itemName}`
+            amount: currentOrder.price,
+            description: `Commande ${currentOrder.name} - ${clientName}`
         },
         onComplete: function(response) {
             if (response.status === 'approved') {
-                // Si le paiement est réussi, on génère les notifications
-                sendNotifications(itemName, itemPrice, response.transaction.id);
-            } else {
-                alert("Le paiement n'a pas été validé. Veuillez réessayer.");
+                sendFinalWhatsApp(clientName, clientPhone, clientAddress, response.transaction.id);
             }
         }
     });
     widget.open();
+}
+
+function sendFinalWhatsApp(name, phone, address, transId) {
+    const message = 
+        `🔔 *NOUVELLE COMMANDE PAYÉE* 🔔%0A` +
+        `🆔 *Commande :* #ORD-${transId}%0A` +
+        `👤 *Client :* ${name}%0A` +
+        `📞 *Contact :* ${phone}%0A` +
+        `🏠 *Adresse :* ${address}%0A` +
+        `🛒 *DÉTAIL :* 1x ${currentOrder.name}%0A` +
+        `💰 *TOTAL :* ${currentOrder.price.toLocaleString()} FCFA%0A` +
+        `💳 *Paiement :* Confirmé (FedaPay)`;
+
+    window.location.href = `https://wa.me/${CONFIG.whatsappManager}?text=${message}`;
 }
 
 /**
@@ -90,4 +126,5 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
 });

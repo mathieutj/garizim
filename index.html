@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garizim | Commande de Saveurs Authentiques</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/vZt8b3m8/garizim.png">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/vZt8b3m8/garizim.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>GARI<span>ZIM</span></h1>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="https://wa.me/229XXXXXXXX?text=Bonjour%20Garizim%2C%20j'aimerais%20avoir%20plus%20d'informations%20sur%20votre%20menu%20du%20jour%20!" target="_blank" class="btn-contact">
+                    <i class="fab fa-whatsapp"></i> <span>Nous contacter</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="badge">Nouveau au Bénin</span>
+            <h2>L'art Culinaire à portée de main</h2>
+            <p>Découvrez nos plats signatures, préparés avec passion et livrés chez vous.</p>
+            <a href="#menu" class="btn-primary">Voir le Menu</a>
+        </div>
+    </section>
+
+    <section class="menu-filters">
+        <div class="filter-container">
+            <button class="filter-btn active" data-category="all">Tout</button>
+            <button class="filter-btn" data-category="entree">Entrées</button>
+            <button class="filter-btn" data-category="plat">Plats de Résistance</button>
+            <button class="filter-btn" data-category="boisson">Boissons</button>
+        </div>
+    </section>
+
+    <main class="container" id="menu">
+        <section class="food-grid">
+            
+            <article class="food-card" data-category="plat">
+                <div class="food-badge">Populaire</div>
+                <div class="food-img-container">
+                    <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=500" alt="Poulet Braisé">
+                </div>
+                <div class="food-details">
+                    <h3>Poulet Braisé Garizim</h3>
+                    <p>Mariné aux épices locales, servi avec Alloco et piment noir.</p>
+                    <div class="food-price-row">
+                        <span class="price">4.500 FCFA</span>
+                        <div class="card-action">
+                            <button class="btn-pay-direct" onclick="payDirect('Poulet Braisé', 4500)">
+                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            </button>
+                        </div>
+                    </div>
+                    <p class="payment-security"><i class="fas fa-lock"></i> Paiement sécurisé</p>
+                </div>
+            </article>
+    
+            <article class="food-card" data-category="plat">
+                <div class="food-img-container">
+                    <img src="https://i.postimg.cc/g26rpzbQ/poi.jpg" alt="Carpe Grillée Garizim">
+                </div>
+                <div class="food-details">
+                    <h3>Carpe Grillée Spéciale</h3>
+                    <p>Poisson frais du jour, grillé au feu de bois avec Atchéké.</p>
+                    <div class="food-price-row">
+                        <span class="price">6.000 FCFA</span>
+                        <div class="card-action">
+                            <button class="btn-pay-direct" onclick="payDirect('Carpe Grillée', 6000)">
+                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            </button>
+                        </div>
+                    </div>
+                    <p class="payment-security"><i class="fas fa-lock"></i> Paiement sécurisé</p>
+                </div>
+            </article>
+    
+            <article class="food-card" data-category="entree">
+                <div class="food-img-container">
+                    <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500" alt="Pastels">
+                </div>
+                <div class="food-details">
+                    <h3>Pastels à la Viande (6pcs)</h3>
+                    <p>Beignets croustillants farcis, servis avec une sauce tomate pimentée.</p>
+                    <div class="food-price-row">
+                        <span class="price">2.500 FCFA</span>
+                        <div class="card-action">
+                            <button class="btn-pay-direct" onclick="payDirect('Pastels Viande', 2500)">
+                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            </button>
+                        </div>
+                    </div>
+                    <p class="payment-security"><i class="fas fa-lock"></i> Paiement sécurisé</p>
+                </div>
+            </article>
+    
+            <article class="food-card" data-category="boisson">
+                <div class="food-img-container">
+                    <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=500" alt="Bissap">
+                </div>
+                <div class="food-details">
+                    <h3>Bissap Royal Glacé</h3>
+                    <p>Infusion d'hibiscus maison, menthe fraîche et arôme vanille.</p>
+                    <div class="food-price-row">
+                        <span class="price">1.000 FCFA</span>
+                        <div class="card-action">
+                            <button class="btn-pay-direct" onclick="payDirect('Bissap Royal', 1000)">
+                                <i class="fas fa-wallet"></i> Payer maintenant 
+                            </button>
+                        </div>
+                    </div>
+                    <p class="payment-security"><i class="fas fa-lock"></i> Paiement sécurisé</p>
+                </div>
+            </article>
+    
+        </section>
+    </main>
+
+    <div id="overlay" onclick="toggleCart()"></div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h4>GARIZIM<span>.</span></h4>
+                <p><i class="fas fa-map-marker-alt"></i> Haie Vive, Cotonou, Bénin</p>
+                <p><i class="fas fa-phone"></i>+229 97 00 00 00</p>
+                <p><i class="fas fa-clock"></i> Lun - Dim : 11h00 - 23h00</p>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Restaurant Garizim - Saveurs Authentiques.
+        </div>
+    </footer>
+
+    <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
+    <script src="app.js"></script>
+</body>
+</html>

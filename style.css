@@ -347,7 +347,6 @@ h1, h2, h3 {
     .btn-contact {
         padding: 8px 12px;
     }
-
 }
 .modal {
     display: none; 
@@ -362,4 +361,43 @@ h1, h2, h3 {
 #delivery-form input, #delivery-form textarea {
     width: 100%; padding: 12px; margin: 10px 0;
     border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Poppins';
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    background: #f8f8f8;
+    border-radius: 20px;
+    padding: 2px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+}
+
+.qty-btn {
+    background: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary-orange);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.qty-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* On ajuste le bouton de paiement pour qu'il soit à côté ou dessous */
+.card-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
